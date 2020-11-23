@@ -37,3 +37,41 @@
     - ?<! : (?<!exp1)exp2  找前面不是exp1的exp2
 
 ## 先消化一下上面的内容，反向引用之后再总结...
+
+
+# Python中使用 regular expression
+- 1、re.match() 仅在字符串起始位置匹配字符串
+```python
+import re
+str = 'An apple and an pear.'
+result = re.match('([Aa]n+)', str, flags=0).span()
+# 只会返回开头的‘An’的位置(0,3)
+# 注：match方法的文档还是很简洁的....
+```
+```
+help(re.match)
+>>>
+Help on function match in module re:
+
+match(pattern, string, flags=0)
+    Try to apply the pattern at the start of the string, returning
+    a Match object, or None if no match was found.
+```
+
+- 2、re.search() 从左向右找整个串，返回第一个遇到的符合的串的位置
+```python
+import re
+str = 'The apple and an pear.'
+result = re.search('([Aa]n+)', str, flags=0).span()
+# 只会返回'an'的位置(10,12)
+# 注：search方法的文档同样简洁....
+```
+```
+help(re.search)
+>>>
+Help on function search in module re:
+
+search(pattern, string, flags=0)
+    Scan through string looking for a match to the pattern, returning
+    a Match object, or None if no match was found.
+```
